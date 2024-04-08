@@ -20,8 +20,7 @@ class Customer:
     def cost_distance(self, shop: Shop, fuel_price: float) -> int | float:
         return (self.distance(shop)
                 * (self.car["fuel_consumption"] / 100)
-                * fuel_price
-                )
+                * fuel_price)
 
     def calculate_product_cost(
             self,
