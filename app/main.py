@@ -20,9 +20,8 @@ def shop_trip() -> None:
             print(f"{customer.name}'s trip to the {shop.name}"
                   f" costs {customer.total_costs(shop, fuel_price)}")
             dict_shops_costs.update(
-                {shop.name: customer.total_costs(
-                    shop, fuel_price
-                )
+                {
+                    shop.name: customer.total_costs(shop, fuel_price)
                 }
             )
 
