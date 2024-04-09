@@ -25,10 +25,12 @@ def shop_trip() -> None:
                 )
                 }
             )
+
         min_cost_shop = min(
             shops,
             key=lambda shop: customer.total_costs(shop, fuel_price),
-            default=None)
+            default=None
+        )
         if min_cost_shop:
             cost_to_shop = customer.total_costs(min_cost_shop, fuel_price)
             if cost_to_shop < customer.money:
