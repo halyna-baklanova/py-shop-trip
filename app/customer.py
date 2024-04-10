@@ -17,10 +17,11 @@ class Customer:
     def distance(self, shop: Shop) -> int | float:
         return math.dist(self.location, shop.location) * 2
 
-    def cost_distance(self, shop: Shop, fuel_price: float) -> int | float:
+    def cost_distance(self, car: Car, shop: Shop, fuel_price: float) -> float:
+        car_km_cost = car.km_cost()
         return (
             self.distance(shop)
-            * (self.car["fuel_consumption"] / 100)
+            * car_km_cost
             * fuel_price
         )
 
@@ -30,8 +31,7 @@ class Customer:
             product: str,
             quantity: int
     ) -> float:
-        if product in self.product_cart:
-            return quantity * self.product_cart[product]
+        return quantity * self.product_cart[product]
 
     def cost_products(self, shop: Shop) -> float:
         total_cost = 0
@@ -39,8 +39,8 @@ class Customer:
             total_cost += self.calculate_product_cost(shop, product, quantity)
         return total_cost
 
-    def total_costs(self, shop: Shop, fuel_price: float) -> float:
+    def total_costs(self, car: Car, shop: Shop, fuel_price: float) -> float:
         return round(
             self.cost_products(shop)
-            + self.cost_distance(shop, fuel_price), 2
+            + self.cost_distance(car, shop, fuel_price), 2
         )
